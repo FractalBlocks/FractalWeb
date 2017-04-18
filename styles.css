@@ -1,0 +1,43 @@
+/* Global */
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* App */
+
+body {
+    padding: 20px;
+}
+
+#identity-container {
+    padding: 10px;
+}
+
+#public-key {
+    margin: 10px;
+}
+
+#remote-public-key {
+    margin: 10px;
+    width: 500px;
+}
+
+#log {
+    width: 500px;
+    height: 400px;
+    margin: 10px;
+    padding: 20px;
+    background-color: #EFEFEF;
+}
+
+#message {
+    margin: 10px;
+    width: 500px;
+}
