@@ -2,9 +2,13 @@
 
 A minimalist distributed Web communications framework
 
+## POC
+
+Simple messaging
+
 ## MVP
 
-- Public Messaging App
+- Public Messaging
 
 ## Architecture
 
@@ -34,6 +38,7 @@ For example if there are a conversation or thread between two Nodes (people) eac
 
 ## TODOs
 
+- Debug signalhub and make this POC works
 - Copy tests from swarmlog
 
 ## Dependencies
