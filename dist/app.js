@@ -4,11 +4,11 @@ var SimplePeer = require('simple-peer')
 var connected = false
 
 var keys
-var remotePublicKey
+var Offer
 
-var publicKeyElm = document.getElementById('public-key')
-var publicKeyInput = document.getElementById('remote-public-key')
-var saveRemotePublicKeyBtn = document.getElementById('save-remote-public-key')
+var offerElm = document.getElementById('offer')
+var offerInput = document.getElementById('remote-offer')
+var saveOfferBtn = document.getElementById('save-remote-offer')
 var remoteAnsElm = document.getElementById('remote-ans')
 var remoteAnsInput = document.getElementById('remote-ans-input')
 var saveRemoteAnsBtn = document.getElementById('save-remote-ans')
@@ -27,7 +27,7 @@ var addListeners = (peer, offerer) => {
 
   if (offerer) {
     peer.on('signal', data => {
-      publicKeyElm.innerHTML = JSON.stringify(data)
+      offerElm.innerHTML = JSON.stringify(data)
     })
   } else {
     var answer = []
@@ -73,27 +73,26 @@ messageInput.addEventListener('keyup', ev => {
   }
 })
 
-saveRemotePublicKeyBtn.addEventListener('click', () => {
-  remotePublicKey = publicKeyInput.value
-  if (remotePublicKey !== '') {
-    listenLog(remotePublicKey, logElm)
+saveOfferBtn.addEventListener('click', () => {
+  Offer = offerInput.value
+  if (Offer !== '') {
+    listenLog(Offer)
   }
 })
 
 saveRemoteAnsBtn.addEventListener('click', () => {
   if (remoteAnsInput.value !== '') {
     var data = JSON.parse(remoteAnsInput.value)
-    setTimeout(() => peer.signal(data[0]), 0)
-    setTimeout(() => peer.signal(data[1]), 0)
+    peer.signal(data[0])
+    peer.signal(data[1])
   }
 })
 
-function listenLog (remotePublicKey) {
+function listenLog (offer) {
   var elm
-  peer.destroy()
   peer = new SimplePeer()
   addListeners(peer, false)
-  peer.signal(remotePublicKey)
+  peer.signal(offer)
 }
 
 },{"simple-peer":28}],2:[function(require,module,exports){

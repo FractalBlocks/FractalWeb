@@ -1,62 +1,54 @@
-# FractalWeb (MVP)
+# FractalWeb (POC)
 
 A minimalist distributed Web communications framework
 
-## POC
+# POC 1, simple messaging
 
-Simple messaging
+- Offer / Answer can be interchanged and used to connecct two nodes
 
-## MVP
+- Node1 Offer -> Node2
+- Node1 <- Answer Node2
 
-- Public Messaging
+# POC 2, replicated filtered DB
 
-## Architecture
+Design
 
-- Store
-    - Hyperlog
-- Processing (APIs)
-    - Public Messaging
-    - Private Messaging
-    - Profile sharing
-- Comunications (agnostic)
-    - Discovery service
-        - LAN Discovery: UDP Multicasting
-        - Web Discovery: webrtc-swarm <-> signalhub
-    - Sync service
-        - WSS Sync (local)
-        - Web Sync
+- Minimal
+- Atomic Docs (maybe an Hyperlog per doc?)
 
-## Nodes
+Each node should have:
 
-Each Node has separated logs for each API, e.g. Profile, Public / Private Messaging for simplicity.
-For example if there are a conversation or thread between two Nodes (people) each one has a log.
+- Content index
+- People index
+  - Followers index
 
-## Hubs
+Example:
 
-- Signaling server accesible using invitations
-- Public Node that caches logs and media
+```javascript
 
-## TODOs
+contentIdx = {
+  'contentId': { author: '', timestamp: '', type: '', keywords: [], value: '' },
+}
 
-- Debug signalhub and make this POC works
-- Copy tests from swarmlog
+peopleIdx = {
+  'peopleId': { followersIdx: { token: '' } },
+}
 
-## Dependencies
+```
 
-- app
+Concepts:
 
-chloride
-memdb
-ssb-keys
+- Content is indexed in contentIdx
+- Direct replication: Node replicate their content based on permissions of followersIdx of itself
+- Indirect replication: Node replicate third party content base on follower permissions of the author in the followersIdx of peopleIdx
 
-- swarmlog
+# Roadmap
 
-webrtc-swarm
-signalhub
-hyperlog-sodium
-hyperlog
-defined
-through2
-pump
+- Implement direct replication
+- Implement indirect replication
+- Wifi automatic replication
+- Implement Persistent Nodes
 
-// npm i --save chloride memdb ssb-keys webrtc-swarm signalhub hyperlog-sodium hyperlog defined through2 pump
+# Ideas
+
+- Automatic Node Protocol Verification: Nodes that are corrupted are isolated
