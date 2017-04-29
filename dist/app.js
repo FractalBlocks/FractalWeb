@@ -3,41 +3,40 @@ var SimplePeer = require('simple-peer')
 
 var connected = false
 
-var keys
-var Offer
-
-var offerElm = document.getElementById('offer')
-var offerInput = document.getElementById('remote-offer')
-var saveOfferBtn = document.getElementById('save-remote-offer')
-var remoteAnsElm = document.getElementById('remote-ans')
-var remoteAnsInput = document.getElementById('remote-ans-input')
-var saveRemoteAnsBtn = document.getElementById('save-remote-ans')
+var idInput = document.getElementById('identifier')
+var connectBtn = document.getElementById('connect-btn')
 var logElm = document.getElementById('log')
 var messageInput = document.getElementById('message')
 var sendBtn = document.getElementById('send')
 
-var peer = new SimplePeer({ initiator: true, trickle: false })
+var peer
 
-var addListeners = (peer, offerer) => {
+connectBtn.addEventListener('click', () => {
+
+  if (idInput.value === '') {
+    return
+  }
+
+  peer = new SimplePeer({ initiator: true, trickle: false })
 
   peer.on('connect', () => {
     connected = true
     console.log('CONNECTED')
+    peer.send(JSON.stringify({ type: 'join', value: idInput.value }))
   })
 
-  if (offerer) {
-    peer.on('signal', data => {
-      offerElm.innerHTML = JSON.stringify(data)
+  peer.on('signal', data => {
+    fetch('http:localhost:3005', {
+      method: 'POST',
+      body: JSON.stringify(data),
     })
-  } else {
-    var answer = []
-    peer.on('signal', data => {
-      answer.push(data)
-      if (answer.length === 2) {
-        remoteAnsElm.innerHTML = JSON.stringify(answer)
-      }
-    })
-  }
+      .then(res => res.text())
+      .then(rawSigals => {
+        let signals = JSON.parse(rawSigals)
+        peer.signal(signals[0]) // answer
+        peer.signal(signals[1]) // candidate
+      })
+  })
 
   peer.on('data', data => {
     var obj = JSON.parse(data.toString())
@@ -46,10 +45,7 @@ var addListeners = (peer, offerer) => {
     elm.innerHTML = obj.time.toString() + ' - remote: ' + obj.msg
     logElm.appendChild(elm)
   })
-
-}
-
-addListeners(peer, true)
+})
 
 var sendMsg = () => {
   if (!connected) {
@@ -72,28 +68,6 @@ messageInput.addEventListener('keyup', ev => {
     sendMsg()
   }
 })
-
-saveOfferBtn.addEventListener('click', () => {
-  Offer = offerInput.value
-  if (Offer !== '') {
-    listenLog(Offer)
-  }
-})
-
-saveRemoteAnsBtn.addEventListener('click', () => {
-  if (remoteAnsInput.value !== '') {
-    var data = JSON.parse(remoteAnsInput.value)
-    peer.signal(data[0])
-    peer.signal(data[1])
-  }
-})
-
-function listenLog (offer) {
-  var elm
-  peer = new SimplePeer()
-  addListeners(peer, false)
-  peer.signal(offer)
-}
 
 },{"simple-peer":28}],2:[function(require,module,exports){
 'use strict'

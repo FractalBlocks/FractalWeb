@@ -16,6 +16,19 @@ body {
     padding: 20px;
 }
 
+.identity-container {
+    padding: 10px;
+}
+
+.identity-container div {
+    margin: 10px;
+}
+
+.identity-container input {
+    margin: 10px;
+    width: 500px;
+}
+
 #log {
     width: 500px;
     height: 400px;
