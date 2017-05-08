@@ -4,10 +4,11 @@ A minimalist distributed Web communications framework
 
 # POC 1, simple messaging
 
-- Offer / Answer can be interchanged and used to connecct two nodes
+Completed:
 
-- Node1 Offer -> Node2
-- Node1 <- Answer Node2
+- Users can join the server with an id
+- Users can connect to other users via id
+- Users can send messages between them when connected
 
 # POC 2, replicated filtered DB
 
@@ -42,7 +43,20 @@ Concepts:
 - Direct replication: Node replicate their content based on permissions of followersIdx of itself
 - Indirect replication: Node replicate third party content base on follower permissions of the author in the followersIdx of peopleIdx
 
-# Roadmap
+## Server
+
+The design goal is to have one server per user
+
+Responsabilities:
+
+- Peaple Lookup
+- Signaling
+
+### TODOs:
+
+- Secure Authentication via signed message
+
+## Roadmap
 
 - Implement direct replication
 - Implement indirect replication

@@ -14,6 +14,7 @@ var peopleIdx = {}
 // response
 app.use(async (ctx, next) => {
   if (ctx.request.method === 'POST') {
+    let id
     let peer = new SimplePeer({ wrtc: wrtc })
 
     peer.on('connect', () => {})
@@ -23,28 +24,35 @@ app.use(async (ctx, next) => {
       var obj = JSON.parse(data.toString())
       switch (obj.type) {
         case 'join':
-          peopleIdx[obj.value] = peer
+          id = obj.id
+          peopleIdx[id] = peer
           break
         case 'offer':
-          findPeer = peopleIdx[obj.value.id]
+          findPeer = peopleIdx[obj.id]
           if (findPeer) {
-            findPeer.send(obj)
+            obj.id = id
+            findPeer.send(JSON.stringify(obj))
           } else {
-            peer.send({ type: 'offerRej' })
+            peer.send(JSON.stringify({ type: 'offerRej' }))
           }
           break
         case 'answer':
-          findPeer = peopleIdx[obj.value.id]
+          findPeer = peopleIdx[obj.id]
           if (findPeer) {
-            findPeer.send(obj)
+            obj.id = id
+            findPeer.send(JSON.stringify(obj))
           } else {
-            peer.send({ type: 'answerRej' })
+            peer.send(JSON.stringify({ type: 'answerRej' }))
           }
           break
         default:
           console.log('Unhandled response')
           console.log(obj)
       }
+    })
+
+    peer.on('close', () => {
+      delete peopleIdx[id]
     })
 
     await new Promise((resolve, reject) => {
