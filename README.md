@@ -2,7 +2,7 @@
 
 A minimalist distributed Web communications framework
 
-# POC 1, simple messaging
+## POC 1, Simple messaging
 
 Completed:
 
@@ -10,12 +10,12 @@ Completed:
 - Users can connect to other users via id
 - Users can send messages between them when connected
 
-# POC 2, replicated filtered DB
+## POC 2, replicated filtered DB
 
 Design
 
 - Minimal
-- Atomic Docs (maybe an Hyperlog per doc?)
+- Atomic
 
 Each node should have:
 
@@ -42,6 +42,10 @@ Concepts:
 - Content is indexed in contentIdx
 - Direct replication: Node replicate their content based on permissions of followersIdx of itself
 - Indirect replication: Node replicate third party content base on follower permissions of the author in the followersIdx of peopleIdx
+
+## POC 2, Asymetric encryption
+
+Use ssb-keys library for that
 
 ## Server
 
