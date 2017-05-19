@@ -10,7 +10,6 @@ var connectBtn = document.getElementById('connect-btn')
 var friendInput = document.getElementById('friend-id')
 var connectFriendBtn = document.getElementById('connect-friend-btn')
 
-
 var logElm = document.getElementById('log')
 var messageInput = document.getElementById('message')
 var sendBtn = document.getElementById('send')

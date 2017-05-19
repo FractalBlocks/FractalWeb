@@ -70,3 +70,7 @@ Responsabilities:
 # Ideas
 
 - Automatic Node Protocol Verification: Nodes that are corrupted are isolated
+
+## Resources
+
+- https://wearespindle.com/end-to-end-encryption-between-node-js-and-webcrypto/
