@@ -1,18 +1,18 @@
 var SimplePeer = require('simple-peer')
-var wrtc = require('wrtc')
+const wrtc = require('wrtc')
 
 const Koa = require('koa')
 const bodyParser = require('koa-bodyparser')
-var cors = require('koa-cors')
+const cors = require('kcors')
+const _ = require('koa-route')
 const app = new Koa()
 
-app.use(cors()) // TODO: update to middleware V2
+app.use(cors())
 app.use(bodyParser({ enableTypes: ['text']}))
 
 var peopleIdx = {}
 
-// response
-app.use(async (ctx, next) => {
+const friendConnection = async (ctx, next) => {
   if (ctx.request.method === 'POST') {
     let id
     let peer = new SimplePeer({ wrtc: wrtc })
@@ -69,6 +69,9 @@ app.use(async (ctx, next) => {
 
   }
   await next()
-})
+}
+
+// response
+app.use(_.post('/hub', friendConnection()))
 
 app.listen(3005)
