@@ -1,6 +1,11 @@
-# FractalWeb (POC)
+# FractalWeb
 
 A minimalist distributed Web communications framework
+
+Use cases:
+
+- A user can make public posts
+- A user can make private Posts and only replicate on demand to their friends
 
 ## POC 1, Simple messaging
 
@@ -41,7 +46,7 @@ Concepts:
 
 - Content is indexed in contentIdx
 - Direct replication: Node replicate their content based on permissions of followersIdx of itself
-- Indirect replication: Node replicate third party content base on follower permissions of the author in the followersIdx of peopleIdx
+- Indirect replication: Node replicate third party content based on follower permissions of the author in the followersIdx of peopleIdx
 
 ## POC 2, Asymetric encryption
 
