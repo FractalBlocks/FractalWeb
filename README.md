@@ -2,7 +2,13 @@
 
 A minimalist distributed Web communications framework
 
-Use cases:
+## Core design principles
+
+- Bring the user ideas to life
+- Give all the possible control to the user, and good defaults
+- Give the user real value following good design principles (http://www.timewellspent.io/)
+
+## Use cases
 
 - A user can make public posts
 - A user can make private Posts and only replicate on demand to their friends
