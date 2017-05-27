@@ -8,6 +8,11 @@ A minimalist distributed Web communications framework
 - Give all the possible control to the user, and good defaults
 - Give the user real value following good design principles (http://www.timewellspent.io/)
 
+## Design
+
+- Written in Typescript
+- WebRTC and WebAssembly based
+
 ## Use cases
 
 - A user can make public posts
