@@ -74,6 +74,7 @@ Responsabilities:
 
 ### TODOs:
 
+- Replicate resources directly to friends
 - Secure Authentication via signed message
 
 ## Roadmap
@@ -82,6 +83,7 @@ Responsabilities:
 - Implement indirect replication
 - Wifi automatic replication
 - Implement Persistent Nodes
+- Implement Cryptography in Web via WebAssembly
 
 # Ideas
 
