@@ -53,4 +53,7 @@
 - Make and post content
 - Fetch news
 
-## TODO: simplest version, ASAP
+## Simplest version, ASAP
+
+- Make a Pub (Public Server)
+- Make a lite client
