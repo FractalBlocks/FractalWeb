@@ -6,6 +6,8 @@ A minimalist distributed Web communications framework
 
 - Bring the user ideas to life
 - Give all the possible control to the user, and good defaults
+- User owns her data
+- User owns her connections
 - Give the user real value following good design principles (http://www.timewellspent.io/)
 
 ## Design
