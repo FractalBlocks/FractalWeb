@@ -1,14 +1,14 @@
 # FractalWeb
 
-A minimalist distributed Web communications framework
+A minimalist distributed Web communications framework, meet the content you want.
 
 ## Core design principles
 
-- Bring the user ideas to life
 - Give all the possible control to the user, and good defaults
 - User owns her data
 - User owns her connections
 - Give the user real value following good design principles (http://www.timewellspent.io/)
+- Bring the user ideas to life
 
 ## Design
 
@@ -17,8 +17,11 @@ A minimalist distributed Web communications framework
 
 ## Use cases
 
-- A user can make public posts
-- A user can make private Posts and only replicate on demand to their friends
+- As a blog / microblog
+- As a knowledge base
+- As a corporative chat
+- As a common chat
+- As a CRM
 
 ## POC 1, Simple messaging
 

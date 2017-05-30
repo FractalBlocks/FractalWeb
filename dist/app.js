@@ -35,7 +35,7 @@ connectBtn.addEventListener('click', () => {
   })
 
   serverPeer.on('signal', data => {
-    fetch(serverInput.value, {
+    fetch(serverInput.value + '/hub', {
       method: 'POST',
       body: JSON.stringify(data),
     })
