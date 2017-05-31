@@ -1,17 +1,20 @@
 {
   "name": "fractal-web",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "A minimalist distributed Web communications framework",
   "main": "index.js",
   "scripts": {
-    "start": "watchify app.js -o dist/app.js",
-    "compile": "browserify app.js -o dist/app.js"
+    "start": "node fuse dev",
+    "compile": "node fuse prod",
+    "start-server": "tsc server/index.ts -w --outDir && nodemon ",
+    "compile-server": "tsc server/index.ts"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
-    "browserify": "^14.3.0",
-    "watchify": "^3.9.0"
+    "fuse-box": "^2.0.11",
+    "nodemon": "^1.11.0",
+    "typescript": "^2.4.0-dev.20170530"
   },
   "dependencies": {
     "chloride": "^2.2.4",

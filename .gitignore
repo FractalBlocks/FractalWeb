@@ -8,7 +8,7 @@
 coverage/
 reports/
 dist/
-webpack-stats.json
+.fusebox
 
 # npm stuff
 node_modules/

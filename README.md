@@ -1,3 +1,4 @@
+[![Built with FuseBox](https://img.shields.io/badge/%F0%9F%94%A5-fusebox-1c78c0.svg)](https://github.com/fuse-box/fuse-box)
 # FractalWeb
 
 A minimalist distributed Web communications framework, meet the content you want.
