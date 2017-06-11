@@ -20,8 +20,9 @@ A minimalist distributed Web communications framework, meet the content you want
 
 - As a blog / microblog
 - As a knowledge base
-- As a corporative chat
 - As a common chat
+- As a CMS
+- As a corporative chat
 - As a CRM
 
 ## POC 1, Simple messaging

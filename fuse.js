@@ -4,7 +4,7 @@ const mode = process.argv[2] // dev | prod
 
 const fuse = FuseBox.init({
   homeDir: 'client/',
-  output: 'client/$name',
+  output: 'client/dist/$name',
   globals: { default: 'fw' },
 })
 
