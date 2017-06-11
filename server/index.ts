@@ -12,9 +12,22 @@ import cors = require('kcors')
 import jwt = require('koa-jwt')
 import jwtLib = require('jsonwebtoken')
 import _ = require('koa-route')
+import ssbKeys = require('ssb-keys')
+import fs = require('fs')
+
 const app = new Koa()
 
-let privateKey = 'asdasddsdfds_SDF_SDF_'
+// Configure with files and generate keys with ssb-keys
+let keys = ssbKeys.loadOrCreateSync('./keys.json')
+let privateKey = keys.private
+let publicKey = keys.public
+let passwordHash
+fs.readFile('./server/passwordHash', 'utf8', function (err,data) {
+  if (err) {
+    return console.log(err)
+  }
+  passwordHash = data.slice(0, -1)
+})
 
 app.use(cors())
 app.use(bodyParser({ enableTypes: ['text']}))
@@ -34,32 +47,33 @@ app.use((ctx, next) => {
 // Unprotected middleware
 
 app.use(_.get('/', async (ctx, next) => {
-  ctx.body = 'hola_/'
+  ctx.body = JSON.stringify({ serverName: 'FractalWeb', version: '0.0.1', publicKey })
 }))
 
-interface Login {
-  publicKey: string
-  passwordHash
-}
-
 app.use(_.post('/login', async (ctx, next) => {
-  let login: Login = ctx.request.body
-  if (!login.publicKey || !login.) {
-
+  if (passwordHash !== ctx.request.body) {
+    return
   }
-  var token = jwtLib.sign({ foo: 'bar' }, privateKey)
-  ctx.body = 'hola'
+  var token = jwtLib.sign({ publicKey }, privateKey)
+  ctx.body = token
+}))
 
+// authentication with signed handshake (pub | normal mode)
+app.use(_.post('/auth', async (ctx, next) => {
+  ctx.body = 'hola_ggasd'
 }))
 
 // Middleware below this line is only reached if JWT token is valid
 app.use(jwt({ secret: privateKey }))
 
-app.use(_.get('/gg', async (ctx, next) => {
-  ctx.body = 'hola_gg'
+
+
+app.use(_.post('/connect', async (ctx, next) => {
+  ctx.body = 'hola_ggasd'
 }))
 
-// response
-// app.use(_.post('/hub', friendConnection))
+app.use(_.post('/request', async (ctx, next) => {
+  ctx.body = 'hola_gg'
+}))
 
 app.listen(3005)
