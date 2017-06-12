@@ -18,7 +18,7 @@ import fs = require('fs')
 const app = new Koa()
 
 // Configure with files and generate keys with ssb-keys
-let keys = ssbKeys.loadOrCreateSync('./keys.json')
+let keys = ssbKeys.loadOrCreateSync('./server/keys.json')
 let privateKey = keys.private
 let publicKey = keys.public
 let passwordHash

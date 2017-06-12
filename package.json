@@ -10,7 +10,7 @@
     "watch-server": "nodemon server/dist",
     "compile-server": "tsc -p server --outDir server/dist"
   },
-  "author": "",
+  "author": "Carlos Galarza <carloslfu@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "fuse-box": "^2.0.11",
