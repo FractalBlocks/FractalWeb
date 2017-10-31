@@ -34,7 +34,7 @@
 
 - Client post content
 - Client send to friends / followers
-- Client want to fetch some news, fetch for latetst friends news and sync
+- Client want to fetch some news, fetch for latest friends news and sync
 
 ## Web app architecture
 
